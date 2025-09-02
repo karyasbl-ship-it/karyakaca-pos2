@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # ganti ke 'master' jika itu nama branch utama kamu
+      - main  # atau "master" kalau branch utama kamu master
 
 permissions:
   contents: read
