@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Config untuk GitHub Pages
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/karyakaca-pos2/', // sesuaikan dengan nama repo GitHub
+  base: '/karyakaca-pos2/', // <- harus sama persis dengan nama repo
 })
