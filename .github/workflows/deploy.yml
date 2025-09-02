@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # atau "master" kalau branch utama kamu master
+      - main   # atau "master" kalau branch utama kamu master
+  workflow_dispatch: # biar bisa dijalankan manual juga
 
 permissions:
   contents: read
@@ -23,13 +24,13 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci   # lebih cepat & recommended
 
       - name: Build project
         run: npm run build
 
       - name: Upload production-ready build files
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
