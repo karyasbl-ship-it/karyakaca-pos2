@@ -34,6 +34,10 @@ function App() {
     setNewSale({ name: "", qty: 1 });
   };
 
+  // Hitung laporan harian
+  const totalPenjualan = sales.reduce((sum, s) => sum + s.price * s.qty, 0);
+  const totalProdukTerjual = sales.reduce((sum, s) => sum + s.qty, 0);
+
   return (
     <div className="min-h-screen p-6 bg-gray-100">
       <h1 className="text-2xl font-bold mb-4 text-center">📦 Karya Kaca POS</h1>
@@ -126,7 +130,7 @@ function App() {
       </div>
 
       {/* Tabel penjualan */}
-      <div className="bg-white p-4 rounded-lg shadow">
+      <div className="bg-white p-4 rounded-lg shadow mb-6">
         <h2 className="text-lg font-semibold mb-2">Riwayat Penjualan</h2>
         <table className="w-full border">
           <thead>
@@ -139,4 +143,25 @@ function App() {
           </thead>
           <tbody>
             {sales.map((s, i) => (
-              <tr key={
+              <tr key={i}>
+                <td className="border p-2">{s.name}</td>
+                <td className="border p-2">{s.qty}</td>
+                <td className="border p-2">Rp {s.price.toLocaleString()}</td>
+                <td className="border p-2">Rp {(s.price * s.qty).toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Laporan harian */}
+      <div className="bg-yellow-100 p-4 rounded-lg shadow">
+        <h2 className="text-lg font-bold mb-2">📊 Laporan Harian</h2>
+        <p><b>Total Produk Terjual:</b> {totalProdukTerjual} pcs</p>
+        <p><b>Total Omzet:</b> Rp {totalPenjualan.toLocaleString()}</p>
+      </div>
+    </div>
+  );
+}
+
+export default App;
